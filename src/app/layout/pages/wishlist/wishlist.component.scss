@@ -1,0 +1,32 @@
+.text-main {
+  color: #0aad0a !important;
+}
+.bg-main {
+  background: #0aad0a !important;
+  color: #fff !important;
+}
+.btn-main, .btn-outline-main {
+  background: #0aad0a;
+  color: #fff;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-main:hover, .btn-outline-main:hover {
+  background: #0aad0a;
+  color: #fff;
+}
+.btn-outline-main {
+  background: transparent;
+  color: #0aad0a;
+  border: 1px solid #0aad0a;
+}
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 767.98px) {
+  .card-img-top {
+    height: 180px !important;
+  }
+}

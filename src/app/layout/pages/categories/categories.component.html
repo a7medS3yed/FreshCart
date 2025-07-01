@@ -1,0 +1,14 @@
+
+  <h2 class="fw-bold mb-4 text-main animate__animated animate__fadeInDown">Categories</h2>
+  <div class="row g-4">
+    <ng-container *ngFor="let category of categories(); let i = index">
+      <div class="col-6 col-sm-4 col-md-3">
+        <div [routerLink]="['/product-category', category._id]" class=" category-card text-center shadow-sm rounded-4 p-3 bg-white h-100 animate__animated animate__zoomIn" [style.animationDelay]="(i * 0.08) + 's'">
+          <div class="mb-2 d-flex justify-content-center align-items-center" style="height:100px;">
+            <img [src]="category.image" [alt]="category.name" class="img-fluid rounded-3" style="max-height:90px; object-fit:contain;">
+          </div>
+          <h5 class="fw-bold text-main mb-0">{{ category.name }}</h5>
+        </div>
+      </div>
+    </ng-container>
+  </div>

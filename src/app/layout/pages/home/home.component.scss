@@ -1,0 +1,101 @@
+
+
+.rating {
+  i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Pagination Styles */
+.pagination {
+  .page-item {
+    margin: 0 5px;
+    
+    .page-link {
+      border-radius: 50% !important;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--main-color);
+      border: 1px solid #dee2e6;
+      
+      &:hover {
+        background-color: var(--light-color);
+      }
+    }
+    
+    &.active .page-link {
+      background-color: var(--main-color);
+      border-color: var(--main-color);
+      color: white;
+    }
+  }
+}
+
+
+.very-small {
+  font-size: 13px !important
+}
+
+.product-card {
+  position: relative;
+  border: 1px solid #dee2e6;
+  transition: border-color 0.4s, box-shadow 0.4s;
+
+  &:hover {
+    border-color: #28a745 !important;
+    box-shadow: 0 4px 16px rgba(40, 167, 69, 0.2), 0 1.5px 6px rgba(0,0,0,0.08);
+    z-index: 2;
+
+    .product-actions {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.product-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s;
+  z-index: 10;
+}
+
+.action-btn {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: var(--main-color, #28a745);
+    color: #fff;
+  }
+}
+
+/* home.component.scss */
+@media (min-width: 1200px) {
+  .col-xl-2-4 {
+    flex: 0 0 auto;
+    width: 20%;
+  }
+}
+
+

@@ -1,0 +1,43 @@
+/* Pagination Styles */
+.pagination {
+  .page-item {
+    margin: 0 5px;
+    
+    .page-link {
+      border-radius: 50% !important;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--main-color);
+      border: 1px solid #dee2e6;
+      
+      &:hover {
+        background-color: var(--light-color);
+      }
+    }
+    
+    &.active .page-link {
+      background-color: var(--main-color);
+      border-color: var(--main-color);
+      color: white;
+    }
+  }
+}
+
+
+
+.filter-btn:hover,
+.filter-btn:focus,
+.filter-btn.show {
+    background-color: var(--main, #28a745) !important; /* fallback to Bootstrap primary if --main not set */
+    color: #fff !important;
+    border-color: var(--main, #28a745) !important;
+}
+.filter-option:hover,
+.filter-option:focus,
+.filter-option.active {
+    background-color: var(--main, #28a745) !important;
+    color: #fff !important;
+}

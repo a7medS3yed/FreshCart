@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg bg-light p-3 fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/freshcart-logo.svg" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-flex align-items-center" id="navbarNav">
+      <div class="flex-grow-1"></div>
+      <!-- Center Nav Links -->
+      <ul class="navbar-nav">
+        @if(showLogin) {
+
+        <li class="nav-item me-2">
+          <a class="nav-link cursor-pointer  " routerLink="/home" routerLinkActive="active-link">Home</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link cursor-pointer " routerLink="/products" routerLinkActive="active-link">Products</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link cursor-pointer " routerLink="/brands" routerLinkActive="active-link">Brands</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link cursor-pointer " routerLink="/categories" routerLinkActive="active-link">Categories</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link cursor-pointer " routerLink="/allorders" routerLinkActive="active-link">Orders</a>
+        </li>
+        }
+      </ul>
+      <div class="flex-grow-1"></div>
+
+      <!-- Right Side Icons -->
+      <ul class="navbar-nav mb-2 mb-lg-0 align-items-center ms-auto ">
+
+        @if(!showLogin) {
+
+        <!-- Login nav -->
+        <li class="nav-item me-3">
+          <a class="nav-link cursor-pointer " routerLink="/login" routerLinkActive="active-link">Login</a>
+        </li>
+
+        <!-- Register nav -->
+        <li class="nav-item me-3">
+          <a class="nav-link cursor-pointer" routerLink="/register" routerLinkActive="active-link">Register</a>
+        </li>
+        }
+
+        @if(showLogin) {
+
+        <li class="nav-item me-3">
+          <a class="nav-link position-relative d-flex align-items-center justify-content-center px-2 py-1 rounded"
+            routerLink="/wishlist" routerLinkActive="text-main" aria-label="Wishlist" style="font-size: 1.25rem;">
+            <i class="fa-solid fa-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow"
+              style="font-size: 0.75rem; min-width: 1.3em; min-height: 1.3em; display: flex; align-items: center; justify-content: center; border: 2px solid #fff;">
+              {{ wishCount() || 0 }}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link position-relative d-flex align-items-center justify-content-center px-2 py-1 rounded"
+            routerLink="/cart" routerLinkActive="text-main" aria-label="Cart" style="font-size: 1.25rem;">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow"
+              style="font-size: 0.75rem; min-width: 1.3em; min-height: 1.3em; display: flex; align-items: center; justify-content: center; border: 2px solid #fff;">
+              {{ cartCount() || 0 }}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer text-danger d-flex align-items-center px-2 py-1 rounded" aria-label="Logout"
+            (click)="confirmBox()" style="font-size: 1.25rem;">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

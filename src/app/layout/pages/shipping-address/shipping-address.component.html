@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeInDown">
+      <div class="card-header bg-main text-white text-center rounded-top-4 py-3">
+        <h3 class="mb-0 fw-bold">Shipping Address</h3>
+      </div>
+      <div class="card-body p-4">
+        <form [formGroup]="shippingAddressForm">
+          <!-- Address Details -->
+          <div class="mb-3 animate__animated animate__fadeInLeft animate__delay-1s">
+            <label for="details" class="form-label fw-medium">Address Details</label>
+            <input type="text" id="details" class="form-control" formControlName="details" placeholder="Street, Building, Apartment">
+            <div *ngIf="shippingAddressForm.get('details')?.touched && shippingAddressForm.get('details')?.invalid" class="invalid-feedback d-block">
+              Address details are required.
+            </div>
+          </div>
+          <!-- Phone -->
+          <div class="mb-3 animate__animated animate__fadeInLeft animate__delay-2s">
+            <label for="phone" class="form-label fw-medium">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" formControlName="phone" placeholder="e.g. 01012345678">
+            <div *ngIf="shippingAddressForm.get('phone')?.touched && shippingAddressForm.get('phone')?.invalid" class="invalid-feedback d-block">
+              Phone number is required.
+            </div>
+          </div>
+          <!-- City -->
+          <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-3s">
+            <label for="city" class="form-label fw-medium">City</label>
+            <input type="text" id="city" class="form-control" formControlName="city" placeholder="e.g. Cairo">
+            <div *ngIf="shippingAddressForm.get('city')?.touched && shippingAddressForm.get('city')?.invalid" class="invalid-feedback d-block">
+              City is required.
+            </div>
+          </div>
+          <!-- Submit Button -->
+           <div class="d-flex justify-content-between align-items-center p-3">
+
+             <button (click)="submitShippingAddressOnline(cartId)" type="submit" class="d-block btn btn-main w-100 mx-2 fw-bold py-2 animate__animated animate__fadeInUp animate__delay-4s" [disabled]="shippingAddressForm.invalid">
+               <i class="fa-solid fa-credit-card me-2"></i>Checkout Online
+             </button>
+             <button (click)="submitShippingAddressOffline(cartId)" type="submit" class="d-block mx-2 btn btn-main w-100 fw-bold py-2 animate__animated animate__fadeInUp animate__delay-4s" [disabled]="shippingAddressForm.invalid">
+              <i class="fas fa-truck me-2"></i>checkout Offline
+             </button>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<h2 class="fw-bold h4 mb-3">Featured Categories</h2>
+ <owl-carousel-o [options]="customOptions" class="">
+    @for (category of categories; track $index) {
+            <ng-template carouselSlide [id]="category._id" class="">
+            <!-- <div class="mx-auto" style="width: 85%;"> -->
+                  <img [src]="category.image" [alt]="category.slug" [title]="category.name" class="w-100 rounded-3" style="height: 170px; object-fit: cover;">
+            <!-- </div> -->
+              <p class="text-center fw-bold m-1 ">{{category.name}}</p>
+            </ng-template>
+       
+    }
+    
+  </owl-carousel-o>

@@ -1,0 +1,16 @@
+@if(flag) {
+    <h2 class="fw-bold mb-4 text-main animate__animated animate__fadeInDown">Products By Brand</h2>
+    <app-product-card [products]="products()"></app-product-card>
+}
+@else {
+    <div class="d-flex flex-column align-items-center justify-content-center py-5">
+        <img src="assets/4076549.png"
+             alt="No products"
+             style="width: 120px; opacity: 0.7; margin-bottom: 20px;">
+        <div class="fw-bold text-main h5 mb-2">No products in this Brand</div>
+        <div class="text-muted mb-3">Try selecting a different Brand or check back later.</div>
+        <a routerLink="/products" class="btn btn-main px-4 py-2 rounded-pill shadow-sm">
+            <i class="fas fa-arrow-left me-2"></i>Back to All Products
+        </a>
+    </div>
+}

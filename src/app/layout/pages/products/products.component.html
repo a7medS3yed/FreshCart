@@ -1,0 +1,49 @@
+<div class="mb-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+    <h2 class="fw-bold mb-4 text-main animate__animated animate__fadeInDown">Products</h2>
+    <!-- Search Input -->
+    <div class="input-group" style="min-width: 320px;">
+        <input type="text" class="form-control" placeholder="Search products..." [(ngModel)]="searchTerm"
+            aria-label="Search products" />
+        <button class="btn btn-outline-secondary dropdown-toggle filter-btn" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Filter
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a class="dropdown-item filter-option cursor-pointer">Category</a>
+            </li>
+            <li>
+                <a class="dropdown-item filter-option cursor-pointer">Brand</a>
+            </li>
+            <li>
+                <a class="dropdown-item filter-option cursor-pointer" (click)="onSort('+price')">Price: Low to High</a>
+            </li>
+            <li>
+                <a class="dropdown-item filter-option cursor-pointer" (click)="onSort('-price')">Price: High to Low</a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <a class="dropdown-item filter-option cursor-pointer" (click)="resetFilter()">Reset Filters</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<app-product-card [products]="products()" [searchTerm]="searchTerm()"></app-product-card>
+<!-- Pagination Controls -->
+<nav class="d-flex justify-content-center mt-4">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="goToPage(currentPage - 1)"
+                [disabled]="currentPage === 1">&laquo;</button>
+        </li>
+        <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+            <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="goToPage(currentPage + 1)"
+                [disabled]="currentPage === totalPages">&raquo;</button>
+        </li>
+    </ul>
+</nav>

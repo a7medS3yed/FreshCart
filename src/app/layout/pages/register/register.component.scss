@@ -1,0 +1,27 @@
+/* Card hover effect */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(10, 173, 10, 0.2) !important;
+  }
+}
+
+/* Rounded elements */
+.rounded-pill {
+  border-radius: 50rem !important;
+}
+
+
+.card-header {
+  h2 {
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  
+  p {
+    opacity: 0.9;
+  }
+}

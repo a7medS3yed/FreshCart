@@ -1,0 +1,95 @@
+
+  <h2 class="fw-bold mb-4 text-main animate__animated animate__fadeInDown">My Orders</h2>
+  <div *ngIf="!ordersList()" class="text-center animate__animated animate__fadeIn">
+    
+    <h4 class="fw-bold">No orders yet</h4>
+    <p class="text-muted">You haven't placed any orders yet.</p>
+    <a routerLink="/products" class="btn btn-main mt-2">Shop Now</a>
+  </div>
+  <div class="row g-4">
+    <ng-container *ngFor="let order of ordersList(); let i = index">
+      <div class="col-12">
+        <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeInUp" [style.animationDelay]="(i * 0.1) + 's'">
+          <div class="card-header bg-main text-white rounded-top-4 d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+              <span class="fw-bold">Order #{{order.id}}</span>
+              <span class="badge bg-light text-main ms-2">{{ order.paymentMethodType | titlecase }}</span>
+            </div>
+            <div>
+              <span class="badge bg-success me-2" *ngIf="order.isPaid">Paid</span>
+              <span class="badge bg-danger me-2" *ngIf="!order.isPaid">Not Paid</span>
+              <span class="badge bg-info" *ngIf="order.isDelivered">Delivered</span>
+              <span class="badge bg-warning text-dark" *ngIf="!order.isDelivered">Not Delivered</span>
+            </div>
+          </div>
+          <div class="card-body p-4">
+            <!-- Shipping Address -->
+            <div class="mb-3 d-flex flex-wrap gap-3 align-items-center">
+              <div>
+                <i class="fas fa-map-marker-alt text-main me-2"></i>
+                <span class="fw-bold">{{order.shippingAddress.city}}</span>,
+                <span>{{order.shippingAddress.details}}</span>
+              </div>
+              <div>
+                <i class="fas fa-phone text-main me-2"></i>
+                <span>{{order.shippingAddress.phone}}</span>
+              </div>
+              <div>
+                <i class="fas fa-calendar-alt text-main me-2"></i>
+                <span>{{order.createdAt | date:'medium'}}</span>
+              </div>
+            </div>
+            <!-- Cart Items -->
+            <div class="table-responsive mb-3">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Count</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of order.cartItems">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img [src]="item.product.imageCover" alt="product" style="width:48px; height:48px; object-fit:cover; border-radius:8px;">
+                        <span class="fw-bold">{{item.product.title}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <img [src]="item.product.brand.image" alt="brand" style="width:32px; height:32px; border-radius:50%;">
+                      <span class="ms-2">{{item.product.brand.name}}</span>
+                    </td>
+                    <td>
+                      <span class="badge bg-light text-main">{{item.product.category.name}}</span>
+                    </td>
+                    <td>
+                      <span class="fw-bold">{{item.count}}</span>
+                    </td>
+                    <td>
+                      <span class="fw-bold text-main">${{item.price}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Order Summary -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+              <div>
+                <span class="fw-bold">Tax:</span>
+                <span class="text-muted">${{order.taxPrice}}</span>
+                <span class="fw-bold ms-3">Shipping:</span>
+                <span class="text-muted">${{order.shippingPrice}}</span>
+              </div>
+              <div>
+                <span class="fw-bold h5 text-main">Total: ${{order.totalOrderPrice}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>

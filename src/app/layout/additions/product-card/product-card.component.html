@@ -1,0 +1,49 @@
+<div class="row g-3">
+    <ng-container *ngFor="let product of (products | search:searchTerm); let i = index">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2-4 col-xxl-2 p-2">
+            <div class="card p-3 rounded-3 product-card position-relative animate__animated animate__fadeInUp"
+                [style.animation-delay]="(i * 0.1) + 's'">
+                <div class="px-5 py-1 mx-auto rounded-2 my-1">
+                    <img [src]="product.imageCover" alt="product image" class="w-100 animate__animated animate__zoomIn">
+                </div>
+                <div class="product-actions">
+                      <button (click)="addToWishlist(product._id)" class="action-btn"
+                            [ngClass]="{'text-danger': wishlistIds().includes(product._id)}" title="Add to Wishlist">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    <button class="action-btn" title="View" [routerLink]="['/productDetails', product._id]">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn" title="Add to Cart" (click)="addToCart(product._id)">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted very-small fw-bold">{{product.category.name}}</p>
+                    <h5 class="fw-bold h6">{{product.title.split(' ').slice(0,2).join(' ')}}</h5>
+                    <!-- Rating -->
+                    <div class="rating mb-2">
+                        <i class="fas fa-star rating-color"
+                            *ngFor="let star of getFullStars(product.ratingsAverage)"></i>
+                        <i class="fas fa-star-half-alt rating-color"
+                            *ngIf="shouldShowHalfStar(product.ratingsAverage)"></i>
+                        <i class="far fa-star rating-color"
+                            *ngFor="let star of getEmptyStars(product.ratingsAverage)"></i>
+                        <span class="small text-muted ms-1">({{product.ratingsAverage | number:'1.1-1'}})</span>
+                    </div>
+                </div>
+                <!-- Price -->
+                <div class="d-flex justify-content-between align-items-center px-3">
+                    <div>
+                        <span class="fw-bold text-main small">${{product.price}}</span>
+                        <span class="text-muted text-decoration-line-through small ms-2"
+                            *ngIf="product.priceAfterDiscount">${{product.priceAfterDiscount}}</span>
+                    </div>
+                    <button class="btn btn-sm btn-main rounded-3" (click)="addToCart(product._id)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

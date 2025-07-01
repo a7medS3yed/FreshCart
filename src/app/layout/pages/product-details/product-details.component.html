@@ -1,0 +1,56 @@
+@if(product()){
+    
+    <div class="row g-4 align-items-start bg-light  rounded-2">
+        <!-- Product Images -->
+        <div class="col-12 col-md-6">
+            <div class="bg-white rounded-4 shadow-sm p-3 mb-3 text-center">
+                <img [src]="product().imageCover" alt="Product Image"
+                    class="img-fluid rounded-3 main-img animate__animated animate__fadeIn"
+                    style="max-height: 350px; object-fit: contain;">
+            </div>
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                <img *ngFor="let img of product().images" [src]="img" alt="Product Thumbnail"
+                    class="img-thumbnail rounded-3 thumb-img"
+                    style="width: 70px; height: 70px; object-fit: cover; cursor: pointer;" (click)="selectImage(img)">
+            </div>
+        </div>
+    
+        <!-- Product Info -->
+        <div class="col-12 col-md-6">
+            <div class="bg-light rounded-4 shadow-sm p-4 h-100 d-flex flex-column">
+                <div class=" d-flex align-items-center  rounded-3 p-2 mb-3">
+                    <img [src]="product().brand.image" [alt]="product().brand.name" class="rounded-circle"
+                        style="width: 50px; height: 50px;">
+                    <span class="mx-2 fw-bold">{{product().brand.name}}</span>
+                </div>
+                <h2 class="fw-bold mb-2 text-main">{{ product().title }}</h2>
+                <p class="text-muted mb-2">{{ product().description }}</p>
+                <div class="mb-3 d-flex align-items-center gap-2">
+                    <span class="fw-bold h4 text-main">${{ product().price }}</span>
+                    <span class="text-muted text-decoration-line-through" *ngIf="product().priceAfterDiscount">
+                        ${{ product().priceAfterDiscount }}
+                    </span>
+                </div>
+                <!-- Rating -->
+                <div class="rating mb-2">
+                    <i class="fas fa-star rating-color" *ngFor="let star of getFullStars(product().ratingsAverage)"></i>
+                    <i class="fas fa-star-half-alt rating-color" *ngIf="shouldShowHalfStar(product().ratingsAverage)"></i>
+                    <i class="far fa-star rating-color" *ngFor="let star of getEmptyStars(product().ratingsAverage)"></i>
+                    <span class="small text-muted ms-1">({{product().ratingsAverage | number:'1.1-1'}})</span>
+                </div>
+                <div class="mb-4">
+                    <span class="badge bg-light text-dark me-2" *ngFor="let cat of product().category?.name?.split(',')">{{
+                        cat }}</span>
+                </div>
+                <div class="d-flex gap-2 flex-wrap">
+                    <button (click)="addToCart(product()._id)" class="btn btn-main px-4 py-2 rounded-3 fw-bold" [disabled]="product().quantity === 0">
+                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                    </button>
+                    <button (click)="addToWishlist(product()._id)" class="btn btn-outline-danger px-4 py-2 rounded-3 fw-bold">
+                        <i class="fas fa-heart me-2"></i>Add to Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

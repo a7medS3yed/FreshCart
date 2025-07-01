@@ -1,0 +1,19 @@
+.nav-link.position-relative {
+  transition: background 0.2s, color 0.2s;
+  &:hover, &.text-main {
+    background: #f8f9fa;
+    color: var(--main-color, #0d6efd);
+  }
+}
+
+.badge {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-weight: 600;
+}
+
+@media (max-width: 991.98px) {
+  .nav-link.position-relative {
+    font-size: 1.1rem;
+    padding: 0.5rem 0.7rem;
+  }
+}

@@ -1,0 +1,30 @@
+/* Login specific styles */
+.login-container {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* Forgot password link */
+.forgot-password {
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #0a8a0a !important;
+    text-decoration: underline;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .btn-lg {
+    padding: 0.75rem !important;
+  }
+}
+
+
+
+

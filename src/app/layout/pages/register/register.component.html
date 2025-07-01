@@ -1,0 +1,173 @@
+<div class=" animate__animated animate__fadeIn">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 overflow-hidden">
+                <!-- Modern gradient header -->
+                <div class="card-header bg-main text-white text-center py-4 position-relative">
+                    <div class="position-absolute w-100 h-100 bg-pattern opacity-10"></div>
+                    <h2 class="animate__animated animate__bounceInDown mb-2 fw-bold display-6">Join Us</h2>
+                    <p class="mb-0 animate__animated animate__fadeIn animate__delay-1s fs-5">Create your account in
+                        seconds</p>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    @if(errorMassage) {
+                        <div class="alert alert-danger animate__animated animate__fadeInDown" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> {{ errorMassage }}
+                        </div>  
+                    }
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+                        <!-- Name Field with Icon -->
+                        <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-1s">
+                            <label for="name" class="form-label fw-medium text-muted small">NAME</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-user text-main"></i>
+                                </span>
+                                <input formControlName="name" type="text" class="form-control border-start-0 ps-2"
+                                    placeholder="John Doe">
+                               
+                                @if(registerForm.get('name')?.touched && registerForm.get('name')?.invalid) {
+
+                                    @if(registerForm.get('name')?.errors?.['required']) {
+                                        <div class="invalid-feedback d-block">*Name is required.</div>
+                                    }
+                                    @if(registerForm.get('name')?.errors?.['minlength']) {
+                                        <div class="invalid-feedback d-block">*Name must be at least 3 characters.</div>
+                                    }
+                                    @if(registerForm.get('name')?.errors?.['maxlength']) {
+                                        <div class="invalid-feedback d-block">*Name cannot exceed 20 characters.</div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Email Field with Icon -->
+                        <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-2s">
+                            <label for="email" class="form-label fw-medium text-muted small">EMAIL ADDRESS</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-envelope text-main"></i>
+                                </span>
+                                <input formControlName="email" type="email" class="form-control border-start-0 ps-2" id="email" name="email"
+                                    placeholder="example@domain.com">
+                                 @if(registerForm.get('email')?.touched && registerForm.get('email')?.invalid) {
+
+                                    @if(registerForm.get('email')?.errors?.['required']) {
+                                        <div class="invalid-feedback d-block">*Email is required.</div>
+                                    }
+                                    @if(registerForm.get('name')?.errors?.['email']) {
+                                        <div class="invalid-feedback d-block">*Please enter a valid email address.</div>
+
+                                    }
+                                  
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Phone Field with Icon -->
+                        <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-3s">
+                            <label for="phone" class="form-label fw-medium text-muted small">PHONE NUMBER</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-phone text-main"></i>
+                                </span>
+                                <input formControlName="phone" type="tel" class="form-control border-start-0 ps-2" id="phone" name="phone"
+                                    placeholder="+1 (123) 456-7890">
+                                 @if(registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid) {
+
+                                    @if(registerForm.get('phone')?.errors?.['required']) {
+                                        <div class="invalid-feedback d-block">*Phone is required.</div>
+                                    }
+                                    @if(registerForm.get('phone')?.errors?.['pattern']) {
+                                        <div class="invalid-feedback d-block">*Accept only egypt phone numbers.</div>
+                                    }
+                                   
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Password Field with Icon and Toggle -->
+                        <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-4s">
+                            <label for="password" class="form-label fw-medium text-muted small">PASSWORD</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-lock text-main"></i>
+                                </span>
+                                <input formControlName="password" #passwordInput type="password"
+                                    class="form-control border-start-0 ps-2 password-input" id="password"
+                                    name="password" placeholder="••••••••">
+                                <button class="btn btn-light border toggle-password" type="button"
+                                    (click)="togglePassword(passwordInput, passwordIcon)">
+                                    <i #passwordIcon class="far fa-eye"></i>
+                                </button>
+                            </div>
+                            @if(registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+
+                                @if(registerForm.get('password')?.errors?.['required']) {
+                                    <div class="invalid-feedback d-block">*Password is required.</div>
+                                }
+                                @if(registerForm.get('password')?.errors?.['pattern']) {
+                                    <div class="invalid-feedback d-block">*Password must start with upperCase then from 6 to more any chars .</div>
+                                }
+                            }
+                        </div>
+
+                        <!-- Confirm Password Field with Icon -->
+                        <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-5s">
+                            <label for="confirmPassword" class="form-label fw-medium text-muted small">CONFIRM
+                                PASSWORD</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-lock text-main"></i>
+                                </span>
+                                <input formControlName="rePassword" #confirmPasswordInput type="password"
+                                    class="form-control border-start-0 ps-2 password-input" id="confirmPassword"
+                                    name="confirmPassword" placeholder="••••••••">
+                                <button class="btn btn-light border toggle-password" type="button"
+                                    (click)="togglePassword(confirmPasswordInput, confirmPasswordIcon)">
+                                    <i #confirmPasswordIcon class="far fa-eye"></i>
+                                </button>
+                                @if(registerForm.touched && registerForm.hasError('mismatch')) {
+
+                                    <!-- @if(registerForm.get('rePassword')?.errors?.['required']) {
+                                        <div class="invalid-feedback d-block">*Confirm Password is required.</div>
+                                    } -->
+                                    
+                                  <div class="invalid-feedback d-block">*Passwords do not match.</div>
+                                    
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid mt-4 animate__animated animate__fadeInUp animate__delay-6s">
+                            <button [disabled]="lodding" type="submit" class="btn-main btn-lg rounded-pill py-3 fw-bold">
+                                <i class="fas fa-user-plus me-2"></i> Sign Up
+                                @if(lodding) {
+                                    <span class="spinner-border spinner-border-sm ms-2" role="status"
+                                        aria-hidden="true"></span>
+                                }
+                            </button>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="position-relative my-4 animate__animated animate__fadeIn animate__delay-6s">
+                            <hr class="border-1">
+                            <div
+                                class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted">
+                                OR</div>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="text-center mt-4 animate__animated animate__fadeIn animate__delay-8s">
+                            <p class="text-muted">Already have an account?
+                                <a routerLink="/login" class="text-main fw-bold cursor-pointer">Log In</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="animate__animated animate__fadeIn">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 overflow-hidden">
+        <!-- Modern gradient header -->
+        <div class="card-header bg-main text-white text-center py-4 position-relative">
+          <div class="position-absolute w-100 h-100 bg-pattern opacity-10"></div>
+          <h2 class="animate__animated animate__bounceInDown mb-2 fw-bold display-6">Welcome Back</h2>
+          <p class="mb-0 animate__animated animate__fadeIn animate__delay-1s fs-5">Sign in to your account</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+          @if(errorMassage) {
+            <div class="alert alert-danger animate__animated animate__fadeInDown" role="alert">
+              <i class="fas fa-exclamation-triangle"></i> {{ errorMassage }}
+            </div>  
+          }
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+            <!-- Email Field with Icon -->
+            <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-1s">
+              <label for="loginEmail" class="form-label fw-medium text-muted small">EMAIL ADDRESS</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fas fa-envelope text-main"></i>
+                </span>
+                <input formControlName="email" type="email" class="form-control border-start-0 ps-2" 
+                       id="loginEmail" placeholder="example@domain.com">
+              </div>
+              @if(loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+                @if(loginForm.get('email')?.errors?.['required']) {
+                  <div class="invalid-feedback d-block">*Email is required.</div>
+                }
+                @if(loginForm.get('email')?.errors?.['email']) {
+                  <div class="invalid-feedback d-block">*Please enter a valid email address.</div>
+                }
+              }
+            </div>
+
+            <!-- Password Field with Icon and Toggle -->
+            <div class="mb-4 animate__animated animate__fadeInLeft animate__delay-2s">
+              <label for="loginPassword" class="form-label fw-medium text-muted small">PASSWORD</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fas fa-lock text-main"></i>
+                </span>
+                <input formControlName="password" #loginPasswordInput type="password"
+                       class="form-control border-start-0 ps-2 password-input" 
+                       id="loginPassword" placeholder="••••••••">
+                <button class="btn btn-light border toggle-password" type="button"
+                        (click)="togglePassword(loginPasswordInput, loginPasswordIcon)">
+                  <i #loginPasswordIcon class="far fa-eye"></i>
+                </button>
+              </div>
+              @if(loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+                @if(loginForm.get('password')?.errors?.['required']) {
+                  <div class="invalid-feedback d-block">*Password is required.</div>
+                }
+              }
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="mb-4 animate__animated animate__fadeIn animate__delay-3s text-end">
+              <a routerLink="/forgot-password" class="text-main small fw-bold cursor-pointer">Forgot password?</a>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mt-4 animate__animated animate__fadeInUp animate__delay-4s">
+              <button [disabled]="loading" type="submit" class="btn-main btn-lg rounded-pill py-3 fw-bold">
+                <i class="fas fa-sign-in-alt me-2"></i> Sign In
+                @if(loading) {
+                  <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+                }
+              </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="position-relative my-4 animate__animated animate__fadeIn animate__delay-5s">
+              <hr class="border-1">
+              <div class="position-absolute top-50 start-50 translate-middle bg-white px-3 small text-muted">
+                OR
+              </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="text-center mt-4 animate__animated animate__fadeIn animate__delay-7s">
+              <p class="text-muted">Don't have an account? 
+                <a routerLink="/register" class="text-main fw-bold cursor-pointer">Sign Up</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

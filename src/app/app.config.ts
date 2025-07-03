@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter, RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, withInMemoryScrolling } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
@@ -14,7 +14,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), 
+    provideRouter(routes, withInMemoryScrolling({scrollPositionRestoration:'top'})), 
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, loaderInterceptor, errorInterceptor])),
     importProvidersFrom(RouterModule, BrowserAnimationsModule, NgxSpinnerModule, SweetAlert2Module),
